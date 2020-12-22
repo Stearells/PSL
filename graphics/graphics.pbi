@@ -6,9 +6,6 @@ DeclareModule GraphicsUtils
   Declare CopyFromArray(out, x, y, Array src.l(2))
   Declare Show(out, w, h)
 EndDeclareModule
-
-DeclareModule GraphicsEffects
-EndDeclareModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 10
+; CursorPosition = 7
 ; Folding = -
