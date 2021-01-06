@@ -38,4 +38,5 @@ Module GraphicsEffects
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
 ; CursorPosition = 37
+; FirstLine = 10
 ; Folding = -

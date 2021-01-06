@@ -46,6 +46,10 @@ Module GraphicsUtils
     StopDrawing()
   EndProcedure
   
+  Procedure.b GetPixBrightness(pix.l)
+    ProcedureReturn (Red(pix) + Green(pix) + Blue(pix)) / 3
+  EndProcedure
+  
   Procedure Show(out, w, h)
     Dim pxd.l(w, h)
     GraphicsUtils::CopyToArray(out, 0, 0, w, h, pxd())
@@ -66,10 +70,41 @@ Module GraphicsUtils
       Delay(1)
     Wend
   EndProcedure
+  
+  Procedure ComparePixelMatrix(Array src.l(2), Array dst.l(2))
+    srcPixelCount = (ArraySize(src(), 1) * ArraySize(src(), 2))
+    dstPixelCount = (ArraySize(dst(), 1) * ArraySize(dst(), 2))
+    
+    w = 0
+    h = 0
+    t.f = 0
+    
+    If srcPixelCount =< dstPixelCount
+      w = ArraySize(src(), 1)
+      h = ArraySize(src(), 2)
+      t = srcPixelCount
+    Else
+      w = ArraySize(dst(), 1)
+      h = ArraySize(dst(), 2)
+      t = dstPixelCount
+    EndIf
+    
+    nbOk = 0
+    
+    For x = 0 To w - 1
+      For y = 0 To h - 1
+        If (src(x, y) / (dst(x, y) + 0.1)) < 1
+          nbOk + 1
+        EndIf
+      Next y
+    Next x
+    
+    r.f = (nbOk / t) * 100
+    ProcedureReturn r
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 68
-; FirstLine = 20
-; Folding = -
+; CursorPosition = 104
+; FirstLine = 77
+; Folding = --
 ; Executable = C:\Users\stearells\Desktop\ex.exe
-; DisableDebugger
