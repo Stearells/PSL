@@ -122,6 +122,8 @@ Module Memory
   EndProcedure
   
   Procedure SaveStructure(fileName.s, *pStruct, size)
+    ;FIXME: Size is not equal 4 bytes in all situations
+    ;TODO:  Is it possible to implicitly pass the size of structure?
     ProcedureReturn Memory::SaveToFile(fileName, *pStruct, size)
   EndProcedure
   
@@ -145,6 +147,6 @@ Module Memory
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 124
-; FirstLine = 97
+; CursorPosition = 125
+; FirstLine = 120
 ; Folding = ----
