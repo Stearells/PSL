@@ -85,6 +85,57 @@ Module Memory
     ProcedureReturn res
   EndProcedure
   
+  Procedure SaveToFile(fileName.s, *pAddress, size)
+    file = OpenFile(#PB_Any, fileName, #PB_File_SharedWrite)
+    
+    If Not file
+      ProcedureReturn #False
+    EndIf
+    
+    WriteData(file, *pAddress, size)
+    CloseFile(file)
+    
+    ProcedureReturn #True
+  EndProcedure
+  
+  Procedure LoadFromFile(fileName.s)
+    fsz = FileSize(fileName)
+    
+    If fsz < 1
+      ProcedureReturn #False
+    EndIf
+    
+    *pTmp = Memory::_alloc(fsz)
+    If Not *pTmp
+      ProcedureReturn #False
+    EndIf
+    
+    file = OpenFile(#PB_Any, fileName, #PB_File_SharedRead)
+    If Not file
+      FreeMemory(*pTmp)
+      ProcedureReturn #False
+    EndIf
+    
+    ReadData(file, *pTmp, fsz)
+    CloseFile(file)
+    ProcedureReturn *pTmp
+  EndProcedure
+  
+  Procedure SaveStructure(fileName.s, *pStruct, size)
+    ProcedureReturn Memory::SaveToFile(fileName, *pStruct, size)
+  EndProcedure
+  
+  Procedure LoadStructure(fileName.s, *pStruct)
+    *tmp = Memory::LoadFromFile(fileName)
+    
+    If Not *tmp 
+      ProcedureReturn #False
+    EndIf
+    
+    CopyMemory(*tmp, *pStruct, MemorySize(*tmp))
+    ProcedureReturn #True
+  EndProcedure
+  
   Procedure FindFunction(szLibraryName.s, szFunctionName.s)
     hLibrary = GetModuleHandle_(szLibraryName)
     *pBuf = UTF8(szFunctionName)
@@ -94,6 +145,6 @@ Module Memory
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 55
-; FirstLine = 34
-; Folding = ---
+; CursorPosition = 124
+; FirstLine = 97
+; Folding = ----

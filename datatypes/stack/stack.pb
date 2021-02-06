@@ -72,13 +72,51 @@ Module Stack
     ProcedureReturn _unsafeSize(stackID)
   EndProcedure
   
+  Procedure unsafe_LShift(stackID)
+    *pTmp = stacks(stackID)\sp
+    align = stacks(stackID)\align
+    
+    For i = 0 To MemorySize(*pTmp)
+      CopyMemory(i + *pTmp + align, i + *pTmp, align)
+      i + align
+      Continue
+    Next i
+  EndProcedure
+  
+  Procedure dump(stackID)
+    *sp = stacks(stackID)\sp
+    align = stacks(stackID)\align
+    
+    For i = 0 To MemorySize(*sp)
+      *p = AllocateMemory(align)
+      CopyMemory(*sp + i, *p, align)
+      
+      s.s = ""
+      For k = 0 To MemorySize(*p) - 1
+        s + "0x" + Hex(PeekB(*p + k), #PB_Byte) + " "
+      Next k
+      
+      FreeMemory(*p)
+      Debug s
+      i + align
+      Continue
+    Next i
+  EndProcedure
+  
   Procedure Push(stackID, value)
     If Not IsValid(stackID)
       ProcedureReturn -1
     EndIf
     
-    msz = MemorySize(stacks(stackID)\sp)
-    ReAllocateMemory(stacks(stackID)\sp, msz + stacks(stackID)\align)
+    For i = 0 To MemorySize(stacks(stackID)\sp)
+      PokeB(i + stacks(stackID)\sp, Random(255))
+    Next i
+    
+    dump(stackID)
+    
+    unsafe_LShift(stackID)
+    
+    dump(stackID)
   EndProcedure
 EndModule
 
@@ -93,7 +131,9 @@ Debug "s1 Align = " + Str(Stack::GetAlign(stack1))
 
 Debug "s0 Size = " + Str(Stack::GetSize(stack0))
 Debug "s1 Size = " + Str(Stack::GetSize(stack1))
+
+Debug "s0 Push = " + Str(Stack::Push(stack0, 4))
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 80
-; FirstLine = 46
+; CursorPosition = 117
+; FirstLine = 79
 ; Folding = --

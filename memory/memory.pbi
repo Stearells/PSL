@@ -57,10 +57,16 @@ DeclareModule Memory
   Declare   FindPattern(*pAddress, memSize, *pPattern, ptSize, nbCount)
   Declare.s ToAsm(*pAddress, size)
   
+  ; File I/O
+  Declare   SaveToFile(fileName.s, *pAddress, size)
+  Declare   LoadFromFile(fileName.s)
+  Declare   SaveStructure(fileName.s, *pStruct, size)
+  Declare   LoadStructure(fileName.s, *pStruct)
+  
   ; Dynamic library
   Declare   FindFunction(szLibraryName.s, szFunctionName.s)
 EndDeclareModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 56
-; FirstLine = 39
+; CursorPosition = 62
+; FirstLine = 17
 ; Folding = --
