@@ -1,4 +1,4 @@
-﻿IncludeFile "..\string\string.pb"
+﻿IncludeFile "..\datatypes\string\string.pb"
 
 DeclareModule Console
   Declare PrintC(szString.s)
