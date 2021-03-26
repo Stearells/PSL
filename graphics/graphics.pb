@@ -1,7 +1,4 @@
-﻿IncludeFile "graphics.pbi"
-IncludeFile "effect.pb"
-
-Module GraphicsUtils
+﻿Module GraphicsUtils
   Procedure CopyToImage(out, x, y, w, h)
     tmpImg = CreateImage(#PB_Any, w, h)
     If Not tmpImg : ProcedureReturn #False : EndIf
@@ -104,7 +101,5 @@ Module GraphicsUtils
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 104
-; FirstLine = 77
 ; Folding = --
 ; Executable = C:\Users\stearells\Desktop\ex.exe

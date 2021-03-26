@@ -1,6 +1,4 @@
-﻿IncludeFile "string.pbi"
-
-Module Strings
+﻿Module Strings
   Procedure RegExprMatch(szString.s, Expression.s)
     regexpr = CreateRegularExpression(#PB_Any, Expression)
     If Not regexpr : ProcedureReturn #False : EndIf
@@ -59,6 +57,4 @@ Module Strings
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 52
-; FirstLine = 38
 ; Folding = --

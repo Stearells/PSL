@@ -12,6 +12,8 @@
   Declare   IsDigit(szString.s)
   Declare.s ParseWords(szString.s, nbWord)
 EndDeclareModule
+
+IncludeFile "string.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 12
+; CursorPosition = 15
 ; Folding = -

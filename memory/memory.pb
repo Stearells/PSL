@@ -1,6 +1,4 @@
-﻿IncludeFile "memory.pbi"
-
-Module Memory
+﻿Module Memory
   Procedure.l Unprotect(*pAddress, size)
     dwOld.l
     VirtualProtect_(*pAddress, size, #PAGE_EXECUTE_READWRITE, @dwOld)
@@ -11,43 +9,6 @@ Module Memory
     dwOld.l
     VirtualProtect_(*pAddress, size, Protection, @dwOld)
   EndProcedure
-  
-  ; x86 opcodes
-  Macro _X86_JMP  : $E9 : EndMacro
-  Macro _X86_CALL : $E8 : EndMacro
-  Macro _X86_RET  : $C2 : EndMacro
-  Macro _X86_NOP  : $90 : EndMacro
-  
-  Procedure JmpHook(*pSource, *pDestination)
-    Memory::Unprotect(*pSource, $05)
-    dwCalc.l = *pDestination - (*pSource + $05)
-    Memory::_write(*pSource, _X86_JMP, #PB_Byte)
-    Memory::_write(*pSource + $01, dwCalc, #PB_Long)
-  EndProcedure
-  
-  Procedure CallHook(*pSource, *pDestination)
-    Memory::Unprotect(*pSource, $05)
-    dwCalc.l = *pDestination - (*pSource + $05)
-    Memory::_write(*pSource, _X86_CALL, #PB_Byte)
-    Memory::_write(*pSource + $01, dwCalc, #PB_Long)
-  EndProcedure
-  
-  Procedure RetHook(*pAddress, code.w)
-    Memory::Unprotect(*pAddress, $01)
-    Memory::_write(*pAddress, _X86_RET, #PB_Byte)
-    Memory::_write(*pAddress + $01, code, #PB_Word)
-  EndProcedure
-  
-  Procedure NopHook(*pAddress, nbNops)
-    Memory::Unprotect(*pAddress, nbNops)
-    Memory::_fill(*pAddress, _X86_NOP, nbNops)
-  EndProcedure
-  
-  ; undefine x86 opcodes
-  UndefineMacro _X86_JMP
-  UndefineMacro _X86_CALL
-  UndefineMacro _X86_RET
-  UndefineMacro _X86_NOP
   
   Procedure FastSave(*pAddress, size)
     *p = Memory::_alloc(size)
@@ -121,23 +82,6 @@ Module Memory
     ProcedureReturn *pTmp
   EndProcedure
   
-  Procedure SaveStructure(fileName.s, *pStruct, size)
-    ;FIXME: Size is not equal 4 bytes in all situations
-    ;TODO:  Is it possible to implicitly pass the size of structure?
-    ProcedureReturn Memory::SaveToFile(fileName, *pStruct, size)
-  EndProcedure
-  
-  Procedure LoadStructure(fileName.s, *pStruct)
-    *tmp = Memory::LoadFromFile(fileName)
-    
-    If Not *tmp 
-      ProcedureReturn #False
-    EndIf
-    
-    CopyMemory(*tmp, *pStruct, MemorySize(*tmp))
-    ProcedureReturn #True
-  EndProcedure
-  
   Procedure FindFunction(szLibraryName.s, szFunctionName.s)
     hLibrary = GetModuleHandle_(szLibraryName)
     *pBuf = UTF8(szFunctionName)
@@ -147,6 +91,6 @@ Module Memory
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 125
-; FirstLine = 120
-; Folding = ----
+; CursorPosition = 82
+; FirstLine = 43
+; Folding = --

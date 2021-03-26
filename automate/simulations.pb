@@ -1,6 +1,4 @@
-﻿IncludeFile "simulations.pbi"
-
-Module Simulations
+﻿Module Simulations
   Procedure MouseClick(button, waitTime)
     Select button
       Case Simulations::#EMU_MOUSELEFT
@@ -36,6 +34,4 @@ Module Simulations
 EndModule
 
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 23
-; FirstLine = 9
 ; Folding = -

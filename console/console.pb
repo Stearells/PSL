@@ -1,6 +1,4 @@
-﻿IncludeFile "console.pbi"
-
-Module Console
+﻿Module Console
   Procedure PrintC(szString.s)
     For i = 1 To Len(szString)
       sym.s = Strings::_getc(szString, i)
@@ -33,5 +31,4 @@ Module Console
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 33
 ; Folding = -

@@ -1,4 +1,4 @@
-﻿IncludeFile "..\memory\memory.pb"
+﻿IncludeFile "effect.pbi"
 
 DeclareModule GraphicsUtils
   Declare   CopyToImage(out, x, y, w, h)
@@ -8,6 +8,7 @@ DeclareModule GraphicsUtils
   Declare   Show(out, w, h)
   Declare   ComparePixelMatrix(Array src.l(2), Array dst.l(2))
 EndDeclareModule
+
+IncludeFile "graphics.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 8
 ; Folding = -

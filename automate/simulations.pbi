@@ -26,6 +26,8 @@
   ; - keyboard events -
   Declare KeyboardPush(vKey, waitTime)
 EndDeclareModule
+
+IncludeFile "simulations.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 27
+; CursorPosition = 29
 ; Folding = -

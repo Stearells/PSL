@@ -1,6 +1,4 @@
-﻿IncludeFile "effect.pbi"
-
-Module GraphicsEffects
+﻿Module GEffect
   Procedure Grayscale(out, x, y, w, h)
     StartDrawing(out)
     For xx = x To w - 1
@@ -37,6 +35,4 @@ Module GraphicsEffects
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 37
-; FirstLine = 10
 ; Folding = -

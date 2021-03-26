@@ -46,12 +46,6 @@ DeclareModule Memory
   Declare.l Unprotect(*pAddress, size)
   Declare   Reprotect(*pAddress, size, Protection)
   
-  ; Hooks/Injection
-  Declare   JmpHook(*pSource, *pDestination)
-  Declare   CallHook(*pSource, *pDestination)
-  Declare   RetHook(*pAddress, code.w)
-  Declare   NopHook(*pAddress, nbNops)
-  
   ; Utils
   Declare   FastSave(*pAddress, size)
   Declare   FindPattern(*pAddress, memSize, *pPattern, ptSize, nbCount)
@@ -60,13 +54,13 @@ DeclareModule Memory
   ; File I/O
   Declare   SaveToFile(fileName.s, *pAddress, size)
   Declare   LoadFromFile(fileName.s)
-  Declare   SaveStructure(fileName.s, *pStruct, size)
-  Declare   LoadStructure(fileName.s, *pStruct)
   
   ; Dynamic library
   Declare   FindFunction(szLibraryName.s, szFunctionName.s)
 EndDeclareModule
+
+IncludeFile "memory.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 62
-; FirstLine = 17
+; CursorPosition = 61
+; FirstLine = 13
 ; Folding = --

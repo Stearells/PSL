@@ -4,8 +4,6 @@
       CompilerError "Symbol " + dq#name#dq + dq()dq + " already defined"
     CompilerEndIf
     
-    Prototype __naked__proto_#name#()
-    Global name.__naked__proto_#name# = ?__naked__#name
     ! jmp __naked__#name#_end
     __naked__#name#:
   EndMacro
@@ -29,7 +27,7 @@ Module Naked
   EndMacro
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 29
+; CursorPosition = 5
 ; Folding = -
 ; Executable = 1.exe
 ; Compiler = PureBasic 5.70 LTS (Windows - x86)
