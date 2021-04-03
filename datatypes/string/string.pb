@@ -1,4 +1,32 @@
 ﻿Module Strings
+  Procedure.s GenerateCodeName(seed)
+    RandomSeed(seed)
+    
+    ln = 2
+    ATypes = 0
+    
+    maskA.s = "aeiou"
+    maskB.s = "bcdfghjklmnpqrstvwxyz"
+    
+    resl.s = ""
+    
+    For i = 0 To ln
+      If ATypes
+        resl + Mid(maskB, Random(Len(maskB) - 1), 2)
+        ATypes = 0
+      Else
+        resl + Mid(maskA, Random(Len(maskA)), 1)
+        ATypes = 1
+      EndIf
+      
+      If Len(resl) < 2
+        resl = UCase(resl)
+      EndIf
+    Next i
+    
+    RandomSeed(Date())
+    ProcedureReturn resl
+  EndProcedure
   Procedure RegExprMatch(szString.s, Expression.s)
     regexpr = CreateRegularExpression(#PB_Any, Expression)
     If Not regexpr : ProcedureReturn #False : EndIf
@@ -57,4 +85,5 @@
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
+; CursorPosition = 28
 ; Folding = --

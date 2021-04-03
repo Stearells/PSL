@@ -11,6 +11,9 @@
   ; String Parsing
   Declare   IsDigit(szString.s)
   Declare.s ParseWords(szString.s, nbWord)
+  
+  ; Generators
+  Declare.s GenerateCodeName(seed)
 EndDeclareModule
 
 IncludeFile "string.pb"
