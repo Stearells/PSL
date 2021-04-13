@@ -24,9 +24,13 @@ DeclareModule Image
   Macro _catchimg(addr, size)
     CatchImage(#PB_Any, addr, size)
   EndMacro
+  
+  Declare ConvertToArray(img, Array arr(2))
+  Declare ConvertToImage(img, Array arr(2))
+  Declare CalculatePixelsAverage(Array arr(1))
 EndDeclareModule
 
 IncludeFile "image.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 10
+; CursorPosition = 32
 ; Folding = --
