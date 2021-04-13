@@ -75,8 +75,24 @@
     Next x
     StopDrawing()
   EndProcedure
+  
+  Procedure FxNegate(img)
+    StartDrawing(ImageOutput(img))
+    For x = 0 To ImageWidth(img) - 1
+      For y = 0 To ImageHeight(img) - 1
+        px = Point(x, y)
+        
+        r = Red(px)
+        g = Green(px)
+        b = Blue(px)
+        
+        Plot(x, y, RGB(255 - r, 255 - g, 255 - b))
+      Next y
+    Next x
+    StopDrawing()
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 63
-; FirstLine = 26
+; CursorPosition = 88
+; FirstLine = 45
 ; Folding = --
