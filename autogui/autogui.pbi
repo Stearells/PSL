@@ -25,6 +25,12 @@ DeclareModule AutoGUI
     FindWindow_(0, wndname)
   EndMacro
   
+  ; Internal Structures
+  Structure wndplace_t
+    pos.Point
+    size.Point
+  EndStructure
+  
   ; Screen utils.
   Declare ScreenLocate(*pPos.Point, screen = 0)
   Declare ScreenSize(*pSize.Point, screen = 0)
@@ -55,11 +61,12 @@ DeclareModule AutoGUI
   ; Capture utils.
   Declare Capture(HDC, img, x, y, width, height)
   Declare CaptureWindow(wndName.s, img)
+  Declare GetWindowPlace(wndName.s, *pWndPlace.wndplace_t)
 EndDeclareModule
 
 IncludeFile "autogui.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 59
-; FirstLine = 11
+; CursorPosition = 25
+; FirstLine = 9
 ; Folding = -
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe

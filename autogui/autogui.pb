@@ -260,8 +260,21 @@
     AutoGUI::Capture(wdc, img, 0, 0, rc\right - rc\left, rc\bottom - rc\top)
     ProcedureReturn #True
   EndProcedure
+  
+  Procedure GetWindowPlace(wndName.s, *pWndPlace.wndplace_t)
+    wnd = AutoGUI::_findwnd(wndName)
+    If Not wnd : ProcedureReturn #False : EndIf
+    
+    rc.Rect : GetWindowRect_(wnd, @rc)
+    
+    *pWndPlace\pos\x = rc\left + 8
+    *pWndPlace\pos\y = rc\top + 1
+    *pWndPlace\size\x = rc\right - rc\left - 16
+    *pWndPlace\size\y = rc\bottom - rc\top - 9
+    ProcedureReturn #True
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 256
-; FirstLine = 214
+; CursorPosition = 271
+; FirstLine = 227
 ; Folding = -----
