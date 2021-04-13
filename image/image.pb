@@ -51,8 +51,32 @@
     Next x
     StopDrawing()
   EndProcedure
+  
+  Procedure FxSepia(img, k)
+    StartDrawing(ImageOutput(img))
+    For x = 0 To ImageWidth(img) - 1
+      For y = 0 To ImageHeight(img) - 1
+        px = Point(x, y)
+        
+        r = Red(px) * 30
+        g = Green(px) * 59
+        b = Blue(px) * 11
+        
+        px = Abs((r + g + b) / 100)
+        
+        sepR = px + k * 2
+        sepG = px + k
+        
+        If sepR > 255 : sepR = 255 : EndIf
+        If sepG > 255 : sepG = 255 : EndIf
+        
+        Plot(x, y, RGB(sepR, sepG, px))
+      Next y
+    Next x
+    StopDrawing()
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 48
-; FirstLine = 3
-; Folding = -
+; CursorPosition = 63
+; FirstLine = 26
+; Folding = --

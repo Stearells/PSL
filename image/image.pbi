@@ -32,10 +32,11 @@ DeclareModule Image
   
   ; Effects
   Declare FxGrayscale(img)
+  Declare FxSepia(img, k)
 EndDeclareModule
 
 IncludeFile "image.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 36
-; FirstLine = 1
+; CursorPosition = 37
+; FirstLine = 2
 ; Folding = --
