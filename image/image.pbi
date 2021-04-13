@@ -35,10 +35,11 @@ DeclareModule Image
   Declare FxSepia(img, factor)
   Declare FxNegate(img)
   Declare FxNoise(img, factor)
+  Declare FxBrightness(img, factor)
 EndDeclareModule
 
 IncludeFile "image.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 39
-; FirstLine = 4
+; CursorPosition = 40
+; FirstLine = 5
 ; Folding = --

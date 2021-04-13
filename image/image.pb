@@ -118,8 +118,33 @@
     Next x
     StopDrawing()
   EndProcedure
+  
+  Procedure FxBrightness(img, factor)
+    StartDrawing(ImageOutput(img))
+    For x = 0 To ImageWidth(img) - 1
+      For y = 0 To ImageHeight(img) - 1
+        px = Point(x, y)
+        
+        r = Red(px) + factor
+        g = Green(px) + factor
+        b = Blue(px) + factor
+        
+        If r < 0 : r = 0 : EndIf
+        If r > 255 : r = 255 : EndIf
+        
+        If g < 0 : g = 0 : EndIf
+        If g > 255 : g = 255 : EndIf
+        
+        If b < 0 : b = 0 : EndIf
+        If b > 255 : b = 255 : EndIf
+        
+        Plot(x, y, RGB(r, g, b))
+      Next y
+    Next x
+    StopDrawing()
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 100
-; FirstLine = 72
+; CursorPosition = 129
+; FirstLine = 97
 ; Folding = --
