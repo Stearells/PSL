@@ -33,7 +33,26 @@
     avg = avg / asz
     ProcedureReturn avg
   EndProcedure
+  
+  Procedure FxGrayscale(img)
+    StartDrawing(ImageOutput(img))
+    For x = 0 To ImageWidth(img) - 1
+      For y = 0 To ImageHeight(img) - 1
+        px = Point(x, y)
+        
+        r = Red(px) * 30
+        g = Green(px) * 59
+        b = Blue(px) * 11
+        
+        px = Abs((r + g + b) / 100)
+        
+        Plot(x, y, RGB(px, px, px))
+      Next y
+    Next x
+    StopDrawing()
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 32
+; CursorPosition = 48
+; FirstLine = 3
 ; Folding = -
