@@ -200,26 +200,22 @@
   EndProcedure
   
   Procedure IsUCase(sym.s)
-    If Len(sym) <> 1
+    asym.a = Asc(sym)
+    If asym < 65 Or asym > 90
       ProcedureReturn #False
     EndIf
-    
-    mask.s = "QWERTYUIOPASDFGHJKLZXCVBNM"
-    
-    If Not FindString(mask, sym)
-      ProcedureReturn #False
-    EndIf
-    
     ProcedureReturn #True
   EndProcedure
   
   Procedure KeyboardWrite(text.s, interval = 100)
     For i = 1 To Len(text)
       sym.s = Mid(text, i, 1)
+      ascSym = Asc(sym)
       
-      mask.s = "QWERTYUIOPASDFGHJKLZXCVBNM"
-      If Not FindString(mask, sym)
-        Continue
+      If ascSym <> 32 And ascSym < 65 Or ascSym > 90 ; not space and not upper case
+        If ascSym < 97 Or ascSym > 122               ; not lower case
+          Continue
+        EndIf
       EndIf
       
       If IsUCase(sym)
@@ -247,8 +243,19 @@
       KeyboardHotKey(#VK_CONTROL, #VK_V)
     Next i
   EndProcedure
+  
+  Procedure Capture(HDC, img, x, y, width, height)
+    DDC = StartDrawing(ImageOutput(img))
+    BitBlt_(DDC, 0, 0, width, height, HDC, x, y, #SRCCOPY)
+    StopDrawing()
+  EndProcedure
+  
+  Procedure CaptureWindow(wndName.s)
+    wnd = AutoGUI::_findwnd(wndName)
+    If Not : wnd : ProcedureReturn #False : EndIf
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 239
-; FirstLine = 198
-; Folding = ----
+; CursorPosition = 254
+; FirstLine = 207
+; Folding = -----

@@ -12,6 +12,19 @@ DeclareModule AutoGUI
   #KEYBOARD_WRITE_FAST = 0
   #KEYBOARD_WRITE_REALISTIC = 1
   
+  ; Internal macro.
+  Macro _allocimg(width, height)
+    CreateImage(#PB_Any, width, height)
+  EndMacro
+  
+  Macro _dc()
+    GetDC_(0)
+  EndMacro
+  
+  Macro _findwnd(wndname)
+    FindWindow_(0, wndname)
+  EndMacro
+  
   ; Screen utils.
   Declare ScreenLocate(*pPos.Point, screen = 0)
   Declare ScreenSize(*pSize.Point, screen = 0)
@@ -39,12 +52,23 @@ DeclareModule AutoGUI
   Declare KeyboardWrite(text.s, interval = 100)
   Declare KeyboardWriteAny(text.s, interval = 100, wType = 0)
   
-  ; TODO: Capture utils.
-  ; TODO: --------------
+  ; Capture utils.
+  Declare Capture(HDC, img, x, y, width, height)
+  Declare CaptureWindow(wndName.s)
 EndDeclareModule
 
 IncludeFile "autogui.pb"
+
+UsePNGImageDecoder()
+UsePNGImageEncoder()
+
+im = AutoGUI::_allocimg(512, 512)
+If Not im : End : EndIf
+
+AutoGUI::Capture(AutoGUI::_dc(), im, 0, 0, 512, 512)
+SaveImage(im, "img.png")
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 35
+; CursorPosition = 56
+; FirstLine = 19
 ; Folding = -
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
