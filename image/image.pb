@@ -91,8 +91,35 @@
     Next x
     StopDrawing()
   EndProcedure
+  
+  Procedure FxNoise(img, factor)
+    StartDrawing(ImageOutput(img))
+    For x = 0 To ImageWidth(img) - 1
+      For y = 0 To ImageHeight(img) - 1
+        px = Point(x, y)
+        
+        rnd = Random(factor * 2) - factor
+        
+        r = Red(px) + rnd
+        g = Green(px) + rnd
+        b = Blue(px) + rnd
+        
+        If r < 0 : r = 0 : EndIf
+        If r > 255 : r = 255 : EndIf
+        
+        If g < 0 : g = 0 : EndIf
+        If g > 255 : g = 255 : EndIf
+        
+        If b < 0 : b = 0 : EndIf
+        If b > 255 : b = 255 : EndIf
+        
+        Plot(x, y, RGB(r, g, b))
+      Next y
+    Next x
+    StopDrawing()
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 54
-; FirstLine = 33
+; CursorPosition = 100
+; FirstLine = 72
 ; Folding = --
