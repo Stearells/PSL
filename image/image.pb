@@ -52,7 +52,7 @@
     StopDrawing()
   EndProcedure
   
-  Procedure FxSepia(img, k)
+  Procedure FxSepia(img, factor)
     StartDrawing(ImageOutput(img))
     For x = 0 To ImageWidth(img) - 1
       For y = 0 To ImageHeight(img) - 1
@@ -93,6 +93,6 @@
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 88
-; FirstLine = 45
+; CursorPosition = 54
+; FirstLine = 33
 ; Folding = --

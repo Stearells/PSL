@@ -32,7 +32,7 @@ DeclareModule Image
   
   ; Effects
   Declare FxGrayscale(img)
-  Declare FxSepia(img, k)
+  Declare FxSepia(img, factor)
   Declare FxNegate(img)
 EndDeclareModule
 
