@@ -78,12 +78,12 @@ DeclareModule AutoGUI
   ; Capture utils.
   Declare Capture(HDC, img, x, y, width, height)
   Declare CaptureWindow(wndName.s, img)
-  Declare GetWindowPlace(wndName.s, *pWndPlace.wndplace_t)
+  Declare CaptureWindowPlace(wndName.s, *pWndPlace.wndplace_t)
 EndDeclareModule
 
 IncludeFile "autogui.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 19
-; FirstLine = 13
+; CursorPosition = 71
+; FirstLine = 35
 ; Folding = --
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe

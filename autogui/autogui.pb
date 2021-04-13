@@ -238,9 +238,10 @@
     
     For i = 1 To Len(text)
       sym.s = Mid(text, i, 1)
+      SetClipboardText("")
       SetClipboardText(sym)
-      Delay(interval)
       KeyboardHotKey(#VK_CONTROL, #VK_V)
+      Delay(interval)
     Next i
   EndProcedure
   
@@ -261,7 +262,7 @@
     ProcedureReturn #True
   EndProcedure
   
-  Procedure GetWindowPlace(wndName.s, *pWndPlace.wndplace_t)
+  Procedure CaptureWindowPlace(wndName.s, *pWndPlace.wndplace_t)
     wnd = AutoGUI::_findwnd(wndName)
     If Not wnd : ProcedureReturn #False : EndIf
     
@@ -275,6 +276,6 @@
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 271
-; FirstLine = 227
+; CursorPosition = 266
+; FirstLine = 228
 ; Folding = -----
