@@ -17,6 +17,23 @@ DeclareModule AutoGUI
     CreateImage(#PB_Any, width, height)
   EndMacro
   
+  ; temp macros -> image module
+  Macro _freeimg(im)
+    FreeImage(im)
+  EndMacro
+  
+  Macro _saveimg(im, fname)
+    SaveImage(im, fname)
+  EndMacro
+  
+  Macro _loadimg(fname)
+    LoadImage(#PB_Any, fname)
+  EndMacro
+  
+  Macro _catchimg(addr, size)
+    CatchImage(#PB_Any, addr, size)
+  EndMacro
+  
   Macro _dc()
     GetDC_(0)
   EndMacro
@@ -66,7 +83,7 @@ EndDeclareModule
 
 IncludeFile "autogui.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 25
-; FirstLine = 9
-; Folding = -
+; CursorPosition = 19
+; FirstLine = 13
+; Folding = --
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
