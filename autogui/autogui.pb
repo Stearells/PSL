@@ -250,12 +250,18 @@
     StopDrawing()
   EndProcedure
   
-  Procedure CaptureWindow(wndName.s)
+  Procedure CaptureWindow(wndName.s, img)
     wnd = AutoGUI::_findwnd(wndName)
-    If Not : wnd : ProcedureReturn #False : EndIf
+    If Not wnd : ProcedureReturn #False : EndIf
+    
+    rc.Rect : GetWindowRect_(wnd, @rc)
+    wdc = GetDC_(wnd)
+    
+    AutoGUI::Capture(wdc, img, 0, 0, rc\right - rc\left, rc\bottom - rc\top)
+    ProcedureReturn #True
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 254
-; FirstLine = 207
+; CursorPosition = 256
+; FirstLine = 214
 ; Folding = -----

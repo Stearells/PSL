@@ -54,21 +54,12 @@ DeclareModule AutoGUI
   
   ; Capture utils.
   Declare Capture(HDC, img, x, y, width, height)
-  Declare CaptureWindow(wndName.s)
+  Declare CaptureWindow(wndName.s, img)
 EndDeclareModule
 
 IncludeFile "autogui.pb"
-
-UsePNGImageDecoder()
-UsePNGImageEncoder()
-
-im = AutoGUI::_allocimg(512, 512)
-If Not im : End : EndIf
-
-AutoGUI::Capture(AutoGUI::_dc(), im, 0, 0, 512, 512)
-SaveImage(im, "img.png")
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 56
-; FirstLine = 19
+; CursorPosition = 59
+; FirstLine = 11
 ; Folding = -
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
