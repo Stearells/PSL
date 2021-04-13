@@ -143,8 +143,29 @@
     Next x
     StopDrawing()
   EndProcedure
+  
+  Procedure FxBinary(img, factor)
+    StartDrawing(ImageOutput(img))
+    For x = 0 To ImageWidth(img) - 1
+      For y = 0 To ImageHeight(img) - 1
+        px = Point(x, y)
+        
+        r = Red(px)
+        g = Green(px)
+        b = Blue(px)
+        
+        px = r + g + b
+        If px > (((255 + factor) / 2) * 3)
+          Plot(x, y, $FFFFFF)
+        Else
+          Plot(x, y, 0)
+        EndIf
+      Next y
+    Next x
+    StopDrawing()
+  EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 129
-; FirstLine = 97
+; CursorPosition = 157
+; FirstLine = 118
 ; Folding = --
