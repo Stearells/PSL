@@ -83,7 +83,7 @@ EndDeclareModule
 
 IncludeFile "autogui.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 71
+; CursorPosition = 79
 ; FirstLine = 35
 ; Folding = --
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
