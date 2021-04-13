@@ -3,6 +3,8 @@
 ; Author: Stearells (C) 2021.
 ; -----------------------------
 
+IncludeFile "..\image\image.pbi"
+
 DeclareModule AutoGUI
   ; Constants (do not change it).
   #MOUSE_LEFT   = 0
@@ -13,27 +15,6 @@ DeclareModule AutoGUI
   #KEYBOARD_WRITE_REALISTIC = 1
   
   ; Internal macro.
-  Macro _allocimg(width, height)
-    CreateImage(#PB_Any, width, height)
-  EndMacro
-  
-  ; temp macros -> image module
-  Macro _freeimg(im)
-    FreeImage(im)
-  EndMacro
-  
-  Macro _saveimg(im, fname)
-    SaveImage(im, fname)
-  EndMacro
-  
-  Macro _loadimg(fname)
-    LoadImage(#PB_Any, fname)
-  EndMacro
-  
-  Macro _catchimg(addr, size)
-    CatchImage(#PB_Any, addr, size)
-  EndMacro
-  
   Macro _dc()
     GetDC_(0)
   EndMacro
@@ -83,7 +64,6 @@ EndDeclareModule
 
 IncludeFile "autogui.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 79
-; FirstLine = 35
-; Folding = --
+; CursorPosition = 23
+; Folding = -
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
