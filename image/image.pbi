@@ -29,6 +29,7 @@ DeclareModule Image
   Declare ConvertToArray(img, Array arr(2))
   Declare ConvertToImage(img, Array arr(2))
   Declare CalculatePixelsAverage(Array arr(1))
+  Declare ConvertPartToArray(img, Array arr(2), x, y, width, height)
   
   ; Effects
   Declare FxGrayscale(img)
@@ -41,6 +42,6 @@ EndDeclareModule
 
 IncludeFile "image.pb"
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 41
-; FirstLine = 6
+; CursorPosition = 42
 ; Folding = --
+; DisableDebugger

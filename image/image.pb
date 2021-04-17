@@ -34,6 +34,12 @@
     ProcedureReturn avg
   EndProcedure
   
+  Procedure ConvertPartToArray(img, Array arr(2), x, y, width, height)
+    tmp = GrabImage(img, #PB_Any, x, y, width, height)
+    ConvertToArray(tmp, arr())
+    FreeImage(tmp)
+  EndProcedure
+  
   Procedure FxGrayscale(img)
     StartDrawing(ImageOutput(img))
     For x = 0 To ImageWidth(img) - 1
@@ -166,6 +172,6 @@
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 157
-; FirstLine = 118
+; CursorPosition = 45
+; FirstLine = 75
 ; Folding = --
