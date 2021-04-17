@@ -1,4 +1,14 @@
 ﻿Module AutoGUI
+  Global ip.Input
+  ip\type = #INPUT_KEYBOARD
+  ip\ki\wVk = 0
+  
+  Procedure sendinp(vKey, flags = 0)
+    ip\ki\wScan = MapVirtualKey_(vKey, #MAPVK_VK_TO_VSC)
+    ip\ki\dwFlags = flags
+    SendInput_(1, @ip, SizeOf(Input))
+  EndProcedure
+  
   ; Screen utils.
   Procedure ScreenLocate(*pPos.Point, screen = 0)
     nbDesk = ExamineDesktops() - 1
@@ -177,12 +187,30 @@
     keybd_event_(vKey, 0, #KEYEVENTF_KEYUP, 0)
   EndProcedure
   
+  Procedure KeyboardPressSI(vKey, interval = 1)
+    If interval < 0
+      interval = 0
+    EndIf
+    
+    sendinp(vKey)
+    Delay(interval)
+    sendinp(vKey, #KEYEVENTF_KEYUP)
+  EndProcedure
+  
   Procedure KeyboardDown(vKey)
     keybd_event_(vKey, 0, 0, 0)
   EndProcedure
   
+  Procedure KeyboardDownSI(vKey)
+    sendinp(vKey)
+  EndProcedure
+  
   Procedure KeyboardUp(vKey)
     keybd_event_(vKey, 0, #KEYEVENTF_KEYUP, 0)
+  EndProcedure
+  
+  Procedure KeyboardUpSI(vKey)
+    sendinp(vKey, #KEYEVENTF_KEYUP)
   EndProcedure
   
   Procedure KeyboardHotKey(vKey1, vKey2, vKey3 = #PB_Ignore, interval = 1)
@@ -196,6 +224,20 @@
     keybd_event_(vKey2, 0, #KEYEVENTF_KEYUP, 0)
     If vKey3 <> #PB_Ignore
       keybd_event_(vKey3, 0, #KEYEVENTF_KEYUP, 0)
+    EndIf
+  EndProcedure
+  
+  Procedure KeyboardHotKeySI(vKey1, vKey2, vKey3 = #PB_Ignore, interval = 1)
+    sendinp(vKey1)
+    sendinp(vKey2)
+    If vKey3 <> #PB_Ignore
+      sendinp(vKey3)
+    EndIf
+    Delay(interval)
+    sendinp(vKey1, #KEYEVENTF_KEYUP)
+    sendinp(vKey2, #KEYEVENTF_KEYUP)
+    If vKey3 <> #PB_Ignore
+      sendinp(vKey3, #KEYEVENTF_KEYUP)
     EndIf
   EndProcedure
   
@@ -228,6 +270,27 @@
     Next
   EndProcedure
   
+  Procedure KeyboardWriteSI(text.s, interval = 100)
+    For i = 1 To Len(text)
+      sym.s = Mid(text, i, 1)
+      ascSym = Asc(sym)
+      
+      If ascSym <> 32 And ascSym < 65 Or ascSym > 90 ; not space and not upper case
+        If ascSym < 97 Or ascSym > 122               ; not lower case
+          Continue
+        EndIf
+      EndIf
+      
+      If IsUCase(sym)
+        KeyboardHotKeySI(#VK_SHIFT, Asc(UCase(sym)))
+      Else
+        KeyboardPressSI(Asc(UCase(sym)))
+      EndIf
+
+      Delay(interval)
+    Next
+  EndProcedure
+  
   Procedure KeyboardWriteAny(text.s, interval = 100, wType = 0)
     If wType = AutoGUI::#KEYBOARD_WRITE_FAST
       SetClipboardText(text)
@@ -241,6 +304,23 @@
       SetClipboardText("")
       SetClipboardText(sym)
       KeyboardHotKey(#VK_CONTROL, #VK_V)
+      Delay(interval)
+    Next i
+  EndProcedure
+  
+  Procedure KeyboardWriteAnySI(text.s, interval = 100, wType = 0)
+    If wType = AutoGUI::#KEYBOARD_WRITE_FAST
+      SetClipboardText(text)
+      Delay(interval)
+      KeyboardHotKeySI(#VK_CONTROL, #VK_V)
+      ProcedureReturn
+    EndIf
+    
+    For i = 1 To Len(text)
+      sym.s = Mid(text, i, 1)
+      SetClipboardText("")
+      SetClipboardText(sym)
+      KeyboardHotKeySI(#VK_CONTROL, #VK_V)
       Delay(interval)
     Next i
   EndProcedure
@@ -276,6 +356,5 @@
   EndProcedure
 EndModule
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 265
-; FirstLine = 228
-; Folding = -----
+; CursorPosition = 3
+; Folding = ------

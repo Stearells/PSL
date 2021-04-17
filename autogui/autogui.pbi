@@ -50,11 +50,16 @@ DeclareModule AutoGUI
   ; Keyboard utils.
   Declare KeyboardIsPressed(vKey)
   Declare KeyboardPress(vKey, interval = 1)
+  Declare KeyboardPressSI(vKey, interval = 1)
   Declare KeyboardDown(vKey)
+  Declare KeyboardDownSI(vKey)
   Declare KeyboardUp(vKey)
+  Declare KeyboardUpSI(vKey)
   Declare KeyboardHotKey(vKey1, vKey2, vKey3 = #PB_Ignore, interval = 1)
-  Declare KeyboardWrite(text.s, interval = 100)
+  Declare KeyboardHotKeySI(vKey1, vKey2, vKey3 = #PB_Ignore, interval = 1)
+  Declare KeyboardWriteSI(text.s, interval = 100)
   Declare KeyboardWriteAny(text.s, interval = 100, wType = 0)
+  Declare KeyboardWriteAnySI(text.s, interval = 100, wType = 0)
   
   ; Capture utils.
   Declare Capture(HDC, img, x, y, width, height)
@@ -63,7 +68,14 @@ DeclareModule AutoGUI
 EndDeclareModule
 
 IncludeFile "autogui.pb"
+
+Delay(2000)
+AutoGUI::KeyboardPressSI(#VK_W)
+
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 23
+; CursorPosition = 72
+; FirstLine = 25
 ; Folding = -
+; EnableAdmin
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
+; DisableDebugger
