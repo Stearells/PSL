@@ -3,8 +3,6 @@
 ; Author: Stearells (C) 2021.
 ; -----------------------------
 
-IncludeFile "..\image\image.pbi"
-
 DeclareModule AutoGUI
   ; Constants (do not change it).
   #MOUSE_LEFT   = 0
@@ -68,13 +66,8 @@ DeclareModule AutoGUI
 EndDeclareModule
 
 IncludeFile "autogui.pb"
-
-Delay(2000)
-AutoGUI::KeyboardPressSI(#VK_W)
-
 ; IDE Options = PureBasic 5.70 LTS (Windows - x64)
-; CursorPosition = 72
-; FirstLine = 25
+; CursorPosition = 3
 ; Folding = -
 ; EnableAdmin
 ; Executable = C:\Users\Stearells\Desktop\1.dll.exe
